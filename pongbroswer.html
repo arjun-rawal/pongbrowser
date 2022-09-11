@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head style="background-color:#33475b">
+        <title> PONG   </title>
+    <head>
+<p id ="hello"></p>
+    <canvas id="pongCanvas" width="500" height="500"
+        style="border:1px solid #c3c3c3;">
+    
+    </canvas>
+<script>
+        var canvas = document.getElementById("pongCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.stroke();
+        ctx.fillStyle = "black";
+        var a = 200;
+        var b = 200;
+        var x = 250;
+        var y = 220;        
+        draw();
+
+        function draw(){
+        ctx.fillRect(20,a,13,50);
+        ctx.fillRect(470,b,13,50); 
+        };
+
+        function clear(){
+            ctx.clearRect(20,a,13,50);
+            ctx.clearRect(470,b,13,50); 
+        }
+
+        drawBall();
+        function drawBall() {
+            ctx.fillRect(x,y,10,10);
+        }
+
+        function clearBall(){
+            ctx.clearRect(x,y,10,10);
+        }
+        
+        function startBall(){
+            clearBall();
+            x+=10;
+            drawBall();
+        }
+
+
+
+
+        document.addEventListener('keydown', startBall);
+        document.addEventListener('keydown', move);
+        function move(e){
+        var e = event.key;
+        
+
+        switch (e) {
+                case "w":
+                    clear();
+                    a-=20;
+                    draw();
+                    break;
+                case "s":
+                    clear();
+                    a+=20;
+                    draw();
+                    break;
+                case "ArrowDown":
+                    clear();
+                    b +=20;
+                    draw();
+                    break;
+                case "ArrowUp":
+                    clear();
+                    b -=20;
+                    draw();
+                    break;
+        }
+        
+        if (a == 480){
+            clear();
+            a=20 ;
+            draw();
+        }
+        if (a == 0){
+            clear();
+            a=460 ;
+            draw();
+        }
+        if (b == 480){
+            clear();
+            b=20 ;
+            draw();
+        }
+        if (b == 0){
+            clear();
+            b=460 ;
+            draw();
+        }
+        document.getElementById("hello").innerHTML += (a + " " );
+        }
+            
+            
+
+</script>
+</body>
+</html>
